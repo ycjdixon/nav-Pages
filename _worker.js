@@ -50,57 +50,22 @@ export default {
         
         // 2. 处理静态文件请求（返回index.html）
         // 读取index.html文件并返回
-        const html = `
+       const html = `
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>蓝精灵的网址导航</title>
-    <style>
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: "Microsoft YaHei", "Segoe UI", "PingFang SC", sans-serif;
-        }
-        /* ... 这里粘贴原CSS代码的全部内容（请确保完整粘贴） ... */
-    </style>
-</head>
-<body>
-    <!-- ... 这里粘贴原HTML body代码的全部内容（请确保完整粘贴） ... -->
-    
-    <script>
-        let searchEngine = 'baidu';
-        let currentCate = '常用';
-
-        document.addEventListener('DOMContentLoaded', () => {
-            showCate('常用');
-            // ... 原JS代码的其他部分 ...
-        });
-
-        // ... 原JS函数代码 ...
-        
-        // 修改后的checkPwd和save函数（如上面所示）
-        async function checkPwd() {
-            // ... 修改后的代码 ...
-        }
-        
-        async function save() {
-            // ... 修改后的代码 ...
-        }
-        
-        // ... 原JS代码的其他部分 ...
-    </script>
+<html>
+<head><title>测试页</title></head>
+<body style="padding:20px;">
+    <h1>Pages站点基础功能正常！</h1>
+    <p>这说明 _worker.js 已成功执行并返回HTML。</p>
+    <hr>
+    <h3>测试KV数据读取：</h3>
+    <button onclick="fetch('/api/get?cate=常用').then(r=>r.text()).then(d=>alert('结果：'+ (d||'空'))).catch(e=>alert('失败'+e))">点击测试 /api/get</button>
+    <p>（如果KV无数据，会返回空）</p>
 </body>
-</html>
-        `;
-        
-        return new Response(html, {
-            headers: { 
-                'Content-Type': 'text/html;charset=UTF-8',
-                'Cache-Control': 'no-cache'
-            }
-        });
+</html>`;
+
+return new Response(html, {
+    headers: { 
+        'Content-Type': 'text/html;charset=UTF-8'
     }
-};
+});
