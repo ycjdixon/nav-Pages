@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蓝精灵的网址导航</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <!-- 顶部置顶区域 -->
+    <div class="top-fixed-area">
+        <header>
+            <div class="container header-inner">
+                <div class="logo">蓝精灵的网址导航</div>
+                <!-- 搜索区域 -->
+                <div class="search-area">
+                    <div class="search-box">
+                        <div class="search-engine">
+                            <button onclick="setSearch('baidu')" class="btn btn-blue" id="baiduBtn">百度</button>
+                            <button onclick="setSearch('google')" class="btn btn-gray" id="googleBtn">Google</button>
+                        </div>
+                        <div class="search-input-wrap">
+                            <input id="searchInput" placeholder="输入关键词搜索...">
+                            <span class="clear-btn" onclick="clearSearch()">✕</span>
+                        </div>
+                        <button onclick="search()" class="btn btn-blue search-btn">搜索</button>
+                    </div>
+                </div>
+                <!-- 设置按钮（带齿轮图标） -->
+                <button onclick="openSettings()" class="btn settings-btn">设置</button>
+            </div>
+        </header>
+    </div>
+
+    <!-- 左侧竖向大类按钮 -->
+    <div class="left-cate-buttons">
+        <button onclick="showCate('常用')" class="btn active">常用</button>
+        <button onclick="showCate('娱乐')" class="btn">娱乐</button>
+        <button onclick="showCate('工作')" class="btn">工作</button>
+        <button onclick="showCate('学习')" class="btn">学习</button>
+        <button onclick="showCate('其他')" class="btn">其他</button>
+    </div>
+
+    <!-- 网址内容区域 -->
+    <div class="container content-area" id="content">
+        <p class="empty-tip">暂无内容，点击右上角「设置」添加</p>
+    </div>
+
+    <!-- 设置模态框 -->
+    <div class="modal-mask" id="modal">
+        <div class="modal-content">
+            <button class="modal-close-btn" onclick="closeModal()">✕</button>
+            <div class="modal-title">设置界面</div>
+            <div id="pwdSection">
+                <input type="password" id="pwdInput" class="pwd-input" placeholder="请输入密码" onkeydown="if(event.key === 'Enter') checkPwd()">
+                <button onclick="checkPwd()" class="btn btn-blue">验证</button>
+            </div>
+            <div class="edit-section" id="editSection">
+                <select id="cateSelect" class="cate-select">
+                    <option value="常用">常用</option>
+                    <option value="娱乐">娱乐</option>
+                    <option value="工作">工作</option>
+                    <option value="学习">学习</option>
+                    <option value="其他">其他</option>
+                </select>
+                <textarea id="editor" class="content-editor" placeholder="示例格式：
+名称1|网址1
+名称2|网址2
+名称3|网址3"></textarea>
+                <div class="modal-btns">
+                    <button onclick="save()" class="btn btn-blue">保存</button>
+                    <button onclick="closeModal()" class="btn btn-gray">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
