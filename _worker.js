@@ -1,3 +1,17 @@
+// 1. 将你的完整 index.html 内容进行 Base64 编码
+// 你可以用这个命令（Mac/Linux）： base64 -i index.html
+// 或者用在线工具，将编码后的一长串字符（不含换行）放在下面
+const htmlBase64 = '这里是你的 index.html 经过 Base64 编码后的一大串字符...';
+
+// 2. 解码并返回
+const decoder = new TextDecoder();
+const html = decoder.decode(Uint8Array.from(atob(htmlBase64), c => c.charCodeAt(0)));
+
+return new Response(html, {
+    headers: { 
+        'Content-Type': 'text/html;charset=UTF-8'
+    }
+});
 export default {
     async fetch(request, env, ctx) {
         const SETTINGS_PASSWORD = env.SETTINGS_PASSWORD || '123.321';
