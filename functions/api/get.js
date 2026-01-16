@@ -1,4 +1,4 @@
-// 处理 /api/get 接口，获取指定分类的KV数据
+// 处理 /api/get 接口，获取指定分类的 KV 数据
 export async function onRequestGet(context) {
     const { request, env } = context;
     const url = new URL(request.url);
@@ -10,7 +10,7 @@ export async function onRequestGet(context) {
     }
 
     try {
-        // 从指定KV命名空间获取数据
+        // 从指定 KV 命名空间（KV_NAMESPACE_PAGES）获取数据
         const content = await env.KV_NAMESPACE_PAGES.get(cate) || '';
         return new Response(content, {
             headers: {
@@ -19,7 +19,7 @@ export async function onRequestGet(context) {
             }
         });
     } catch (err) {
-        console.error('获取KV数据失败:', err);
+        console.error('获取 KV 数据失败:', err);
         return new Response('获取数据失败', { status: 500 });
     }
 }
