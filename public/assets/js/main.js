@@ -1,6 +1,6 @@
 // 全局变量
 let searchEngine = 'baidu';
-const SETTINGS_PASSWORD = window.SETTINGS_PASSWORD || '123.321'; // 密码从环境变量或默认值获取
+const SETTINGS_PASSWORD = window.SETTINGS_PASSWORD || '123.321'; // 密码可通过环境变量配置
 let currentCate = '常用';
 
 // 页面加载完成初始化
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 显示指定分类的内容
+// 显示指定分类的内容（API 路径为绝对路径）
 async function showCate(cate) {
     currentCate = cate;
     // 重置所有分类按钮样式
@@ -34,7 +34,7 @@ async function showCate(cate) {
         }
     });
 
-    // 从API获取分类内容
+    // 从API获取分类内容（绝对路径 /api/get）
     try {
         const res = await fetch(`/api/get?cate=${encodeURIComponent(cate)}`);
         const content = await res.text();
@@ -119,7 +119,7 @@ function checkPwd() {
     }
 }
 
-// 加载选中分类的内容到编辑器
+// 加载选中分类的内容到编辑器（API 路径为绝对路径）
 async function loadCateToEditor() {
     const cate = document.getElementById('cateSelect').value;
     try {
@@ -132,7 +132,7 @@ async function loadCateToEditor() {
     }
 }
 
-// 保存分类内容
+// 保存分类内容（API 路径为绝对路径）
 async function save() {
     const cate = document.getElementById('cateSelect').value;
     const content = document.getElementById('editor').value.trim();
